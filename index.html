@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>PearMobi </title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/animate.css">
+<link rel="stylesheet" type="text/css" href="css/awesome/css/font-awesome.min.css">
+<script src="js/fx.js"></script>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script>
+     $(document).ready(function() {
+        $(".logo img").fadeIn(100).addClass("animated bounceInDown");
+        //$(".talk").fadeIn(300).addClass("animated bounceInLeft");
+        firstlaunch(); 
+        //launch();
+         
+         $(".buton").bind("click",function(){
+             $(this).removeClass("animated fadeInUp jello");
+             $(this).addClass("animated jello");
+         });
+         $(".mainurl").bind("keyup",function(){
+            console.log($(".mainurl").val());
+            $(".newsetup li span").html($(".mainurl").val()); 
+         });
+         $(".newsetup input").bind("focus",function(){
+            $(this).parent().css("background","none"); 
+            $(this).removeClass("animated rubberBand");
+         });
+     });
+</script>
+</head>
+<body>
+    <div class="logo">
+        <img src="images/logo.png" />
+        
+    </div>
+    <div class="loadbox">
+        <i class="fa fa-spin fa-spinner"></i>
+    </div>
+    <div class="talk">
+    <i class="fa fa-spin fa-spinner"></i> <span>checking for database</span>
+    </div>
+    <div class="loaderbar" id="bar"></div>
+    <div class="newsetup" style="display:none;">
+    <form method="post" action="code/startup.php" id="writeToconfig">
+        <div><input type="text" name="mainu" placeholder="Main Server Url" class="mainurl" /></div>
+        <input type="hidden" name="function" value="startupOption" />
+        <div class="otherurl">
+        <li><span></span><input type="text" name="dataurl" placeholder="Product Data Url" /></li>
+        <li><span></span><input type="text" name="uploadurl" placeholder="Upload Transaction Url" /></li>
+        <li><span></span><input type="text" name="pullurl" placeholder="Pull Transaction Url" /></li>
+        <li><span></span><input type="text" name="userurl" placeholder="Pull User Data Url" /></li>
+        <li><span></span><input type="text" name="photourl" placeholder="Photo Path" /></li>
+        <li><span></span><input type="text" name="logourl" placeholder="Logo Url" /></li>
+        <li><span></span><input type="text" name="connectionfile" placeholder="Connection Url" /></li>
+        </div>
+        <div class="green_buton" id="setup" onclick="Setup();">Proceed</div>
+    </form>
+    </div>
+    <a class="green_buton" id="proceed" href="app/point.php">Proceed to Store</a>
+    <div class="buton" id="rewrite" onclick="rewriteDB();">Force Database rewrite</div>
+    <p id="rewriteinfo">Updated your product list recently? run a database rewrite.</p>
+    <div class="honey"></div>
+</body>
+</html>
